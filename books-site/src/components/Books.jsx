@@ -5,6 +5,8 @@ import "./Books.css";
 
 function Books() {
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     axios
@@ -26,14 +28,45 @@ function Books() {
     console.log(data.length);
   }, [data]);
 
+  useEffect(() => {
+    const filteredResults = data.filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.authors.some((author) =>
+          author.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    );
+    setSearchResults(filteredResults);
+  }, [data, searchTerm]);
+
+  setInterval(() => {
+    Books();
+  }, 2000);
+
   return (
     <div>
+      <div className="top">
+        <h3>KALVIUM BOOKS</h3>
+        <div className="search">
+          <input
+            className="searchBox"
+            type="text"
+            placeholder="Search by Title or Author"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <button className="register">Register</button>
+      </div>
+      <hr />
       <div className="main">
-        {data.length > 0 ? (
-          data.map((item) => (
+        {searchResults.length > 0 ? (
+          searchResults.map((item) => (
             <div className="display" key={item.id}>
               <img src={item.imageLinks.thumbnail} />
-              <p>{item.title}</p>
+              <p>
+                <b>{item.title}</b>
+              </p>
               <div className="rating">
                 <p>{item.averageRating}</p>
                 <p>Free</p>
