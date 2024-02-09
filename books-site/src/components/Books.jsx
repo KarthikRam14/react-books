@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import "./Books.css";
 
 function Books() {
@@ -46,17 +47,19 @@ function Books() {
   return (
     <div>
       <div className="top">
-        <h3>KALVIUM BOOKS</h3>
-        <div className="search">
-          <input
-            className="searchBox"
-            type="text"
-            placeholder="Search by Title or Author"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <h3>KALVIUM BOOKS</h3>
+        <div className="box">
+          <div className="search">
+            <input
+              className="searchBox"
+              type="text"
+              placeholder="Search by Title or Author"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <button className="register"><Link className='link' to='/form'>Register</Link></button>
         </div>
-        <button className="register">Register</button>
       </div>
       <hr />
       <div className="main">
