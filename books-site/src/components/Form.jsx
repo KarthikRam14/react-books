@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 
 class FormExample extends React.Component {
   state = {
@@ -58,7 +57,7 @@ class FormExample extends React.Component {
         {this.state.emailError && <p>{this.state.emailError}</p>}
         <br />
         <button type="submit">Submit</button>
-        <button><Link className='link' to='/book'>Back</Link></button>
+        <button>Back</button>
       </form>
     );
   }

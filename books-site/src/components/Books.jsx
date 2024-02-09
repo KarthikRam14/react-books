@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import "./Books.css";
 
 function Books() {
@@ -58,7 +57,7 @@ function Books() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <button className="register"><Link className='link' to='/form'>Register</Link></button>
+          <button className="register">Register</button>
         </div>
       </div>
       <hr />
